@@ -11,7 +11,7 @@ SOURCE_DIR=$(realpath ${SCRIPTS_DIR}/../../../)
 echo "starting test with SKIP_BUILD ${SKIP_BUILD} and DO_VALIDATE ${DO_VALIDATE}"
 if [[ -z ${SKIP_BUILD} || ${SKIP_BUILD} -eq 0 ]]; then
     pushd ${SOURCE_DIR}/finder-app
-    ./manual-linux.sh) ${OUTDIR}
+    ./manual-linux.sh ${OUTDIR}
 	rc=$?
 	if [ $rc -ne 0 ]; then
 		add_validate_error "manual-linux script failed with ${rc}"
@@ -26,7 +26,7 @@ if [[ -z ${DO_VALIDATE} || ${DO_VALIDATE} -eq 1 ]]; then
     rm -f ${logfile}
     touch ${logfile}
     echo "Kick off qemu in the background"
-    ./start-qemu-app.sh) ${OUTDIR} &
+    ./start-qemu-app.sh ${OUTDIR} &
     echo "Wait for app to finish"
     # See https://stackoverflow.com/a/6456103
     timeout ${qemu_timeout} grep -q "finder-app execution complete" <(tail -f ${logfile})
