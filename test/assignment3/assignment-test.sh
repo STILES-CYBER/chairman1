@@ -3,7 +3,7 @@ pushd $(dirname $0)
 source script-helpers
 
 SCRIPTS_DIR=$(pwd)
-OUTDIR=/tmp/aesd-autograder
+OUTDIR=${OUTDIR:-$HOME/assignments-3-and-later-beaspin}
 SOURCE_DIR=$(realpath ${SCRIPTS_DIR}/../../../)
 
 # Invoke docker script with --env SKIP_BUILD=1 --env DO_VALIDATE=1 to perform a validation only
